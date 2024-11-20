@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Card</title>
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        /* Card Container */
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 20px 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+            position: relative;
+            overflow: hidden;
+            animation: slide-in 1s ease-in-out;
+        }
+
+        /* Title */
+        .card h1 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #ff7eb3, #ff758c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 1.5s infinite;
+        }
+
+        /* Date Display */
+        .date {
+            font-size: 16px;
+            margin-bottom: 20px;
+            animation: fade-in 1.2s ease-out;
+        }
+
+        /* Button */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background: linear-gradient(90deg, #ff7eb3, #ff758c);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: bounce 2s infinite;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 120, 150, 0.4);
+        }
+
+        /* Animations */
+        @keyframes slide-in {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 5px rgba(255, 120, 150, 0.6), 0 0 10px rgba(255, 120, 150, 0.4);
+            }
+            50% {
+                text-shadow: 0 0 15px rgba(255, 120, 150, 1), 0 0 30px rgba(255, 120, 150, 0.8);
+            }
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Special Event</h1>
+        <div class="date" id="dateDisplay">Loading...</div>
+        <button class="btn">Check Now</button>
+    </div>
+
+    <script>
+        // Display the current date in the "date" section
+        function updateDate() {
+            const dateElement = document.getElementById('dateDisplay');
+            const today = new Date();
+            const formattedDate = today.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+            });
+            dateElement.textContent = formattedDate;
+        }
+
+        // Call the function to set the date
+        updateDate();
+    </script>
+</body>
+</html>
